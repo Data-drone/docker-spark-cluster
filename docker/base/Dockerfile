@@ -1,4 +1,4 @@
-FROM openjdk:8u212-b04-jdk-stretch
+FROM openjdk:8u242-jdk-buster
 LABEL author="Nathaniel Vala" email="nathanielvala@hotmail.com"
 LABEL version="0.2"
 
@@ -38,8 +38,9 @@ RUN cd "/tmp" && \
 #     rm -rf "/tmp/"*
 
 
-# Add Dependencies for PySpark
-RUN apt-get install -y python3 python3-pip python3-numpy python3-matplotlib python3-scipy python3-pandas python3-simpy
+# Add Dependencies for PySpark - up to 3.7
+RUN apt-get install -y python3.7 python3-pip 
+RUN python3.7 -m pip install pip numpy matplotlib scipy pandas simpy
 RUN update-alternatives --install "/usr/bin/python" "python" "$(which python3)" 1
 
 
